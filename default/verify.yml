@@ -1,0 +1,10 @@
+---
+
+- name: Verify
+  hosts: molecule
+  gather_facts: false
+  tasks:
+    - name: Include role-tests
+      ansible.builtin.include_role:
+        name: unbound
+        tasks_from: tests

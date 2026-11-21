@@ -1,0 +1,50 @@
+---
+
+dependency:
+  name: galaxy
+  options:
+    requirements-file: ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/requirements.yml
+
+lint: |
+  set -e
+  yamllint
+  ansible-lint
+
+ansible:
+  cfg:
+    defaults:
+      deprecation_warnings: false
+      roles_path: ${MOLECULE_PROJECT_DIRECTORY}/../
+  env:
+    ANSIBLE_FORCE_COLOR: "1"
+    ANSIBLE_LOAD_CALLBACK_PLUGINS: "1"
+
+  executor:
+    backend: ansible-playbook
+    args:
+      ansible_playbook:
+        - --inventory=${MOLECULE_SCENARIO_DIRECTORY}/inventory/hosts.yml
+
+  playbooks:
+    create: ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/create.yml
+    converge: ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/converge.yml
+    destroy: ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/destroy.yml
+    cleanup: ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/cleanup.yml
+    prepare: prepare.yml
+    side_effect: ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/side_effect.yml
+    verify: ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/verify.yml
+
+scenario:
+  test_sequence:
+    - dependency
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - side_effect
+    - verify
+    - cleanup
+    - destroy

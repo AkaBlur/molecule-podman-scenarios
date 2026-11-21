@@ -1,0 +1,16 @@
+---
+
+- name: Prepare
+  hosts: molecule
+  gather_facts: false
+  tasks:
+    - name: Collect service information
+      ansible.builtin.service_facts:
+
+    - name: Disable systemd-resolved
+      ansible.builtin.service:
+        name: systemd-resolved
+        state: stopped
+        enabled: false
+      become: true
+      when: "'systemd-resolved.service' in ansible_facts.services"

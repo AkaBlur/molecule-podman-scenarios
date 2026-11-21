@@ -1,0 +1,9 @@
+---
+
+- name: Converge
+  hosts: molecule
+  gather_facts: true
+  tasks:
+    - name: Apply role under test
+      ansible.builtin.include_role:
+        name: unbound
