@@ -12,6 +12,8 @@ initialization process.
 - AlmaLinux 9
 - AlmaLinux 10
 
+
+
 - CentOS Stream 9
 - CentOS Stream 10
 
@@ -20,11 +22,13 @@ initialization process.
 - Debian 12
 - Debian 13
 
+
+
 - Ubuntu 22.04
 - Ubuntu 24.04
 - Ubuntu 26.04
 
-> [!info]
+> [!NOTE]
 > Ubuntu 22.04 disables the default systemd-resolved DNS daemon to free up port
 > 53 on the test instance.
 
