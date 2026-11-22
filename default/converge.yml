@@ -4,6 +4,11 @@
   hosts: molecule
   gather_facts: true
   tasks:
+    - name: Parse role meta-data
+      ansible.builtin.set_fact:
+        role_meta: "{{ lookup('file', '../../meta/main.yml') | from_yaml }}"
+      delegate_to: localhost
+
     - name: Apply role under test
       ansible.builtin.include_role:
-        name: unbound
+        name: "ansible-{{ role_meta.galaxy_info.role_name | replace('_', '-') }}"
