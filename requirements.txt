@@ -1,0 +1,2 @@
+ansible-dev-tools           ~= 26.10
+molecule-plugins[podman]    ~= 26.10
