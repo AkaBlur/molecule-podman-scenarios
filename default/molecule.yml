@@ -4,7 +4,7 @@ dependency:
   name: galaxy
   options:
     requirements-file: >
-      ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/requirements.yml
+      ${MOLECULE_PROJECT_DIRECTORY}/molecule/default/collections.yml
 
 lint: |
   set -e
