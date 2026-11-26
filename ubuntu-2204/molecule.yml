@@ -8,7 +8,7 @@ dependency:
 lint: |
   set -e
   yamllint
-  ansible-lint -x role-name
+  ansible-lint
 
 ansible:
   cfg:
